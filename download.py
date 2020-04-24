@@ -1,3 +1,6 @@
+import asyncio
+
+
 import youtube_dl
 import os
 
@@ -22,8 +25,6 @@ class Download:
 
         self._is_audio = False
 
-
-
     def _check(self):
         # TODO: check if args is right
         # TODO: make new class Exception
@@ -36,8 +37,8 @@ class Download:
             self._is_audio = True
 
         if self.output_path == "":
-            if not (os.path.isdir()):
-                os.makedirs(os.path.join())
+            if not (os.path.isdir("./result")):
+                os.makedirs("./result")
 
             self.output_path = "./result"
         elif self.output_path.endswith("/"):
@@ -78,7 +79,7 @@ class Download:
 
         return youtube_dl.YoutubeDL(self.opts)
 
-    def download(self):
+    async def async_download(self):
         self._check()
 
         try:
@@ -94,3 +95,8 @@ class Download:
             logging.exception(f"Cannot downloaded link: {self.link}")
 
             return Exception
+
+    def download(self):
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(self.async_download())
+        loop.close()

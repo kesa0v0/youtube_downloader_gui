@@ -115,8 +115,14 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
                 else:
                     dl.is_custom_name = True
                     dl.custom_name = row[4]
-                dl.thumbnail = row[5]
-                dl.subtitle = row[6]
+                if row[5] == "True":
+                    dl.thumbnail = True
+                else:
+                    dl.thumbnail = False
+                if row[6] == "True":
+                    dl.subtitle = True
+                else:
+                    dl.subtitle = False
 
                 dl.download()
 
