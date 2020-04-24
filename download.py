@@ -1,4 +1,5 @@
 import youtube_dl
+import os
 
 
 class Download:
@@ -35,7 +36,10 @@ class Download:
             self._is_audio = True
 
         if self.output_path == "":
-            self.output_path = "./"
+            if not (os.path.isdir()):
+                os.makedirs(os.path.join())
+
+            self.output_path = "./result"
         elif self.output_path.endswith("/"):
             self.output_path = self.output_path[:-1]
 
