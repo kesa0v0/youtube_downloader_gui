@@ -3,12 +3,11 @@ from PyQt5 import uic
 
 from popup_wnd import AddEditWnd
 from download import Download
-
-form = uic.loadUiType("mainwindow.ui")[0]
+import ui_mainwindow
 
 
 # noinspection PyArgumentList
-class MainWindow(QMainWindow, form):
+class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
     def __init__(self):
         super(MainWindow, self).__init__()
         self.setupUi(self)

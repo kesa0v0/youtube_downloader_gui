@@ -3,13 +3,11 @@ from PyQt5 import uic
 
 
 from exceptions import *
-
-
-addform = uic.loadUiType("addwindow.ui")[0]
+import ui_addwindow
 
 
 # noinspection PyArgumentList
-class AddEditWnd(QDialog, addform):
+class AddEditWnd(QDialog, ui_addwindow.Ui_Form):
     def __init__(self, editmode, args=None):
         super().__init__()
         self.setupUi(self)
