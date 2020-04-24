@@ -1,10 +1,4 @@
 import youtube_dl
-from utils import *
-
-
-def convertingalert(d):
-    if d['status'] == 'finished':
-        print('Done downloading, now converting ...')
 
 
 class Download:
