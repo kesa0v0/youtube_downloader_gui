@@ -1,5 +1,4 @@
 from PyQt5.QtWidgets import *
-from PyQt5 import uic
 
 from popup_wnd import AddEditWnd
 from download import Download
@@ -82,7 +81,6 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
                     self.tw_monitor.removeRow(select)
 
     def btn_start_clicked(self):
-        # TODO: popup start processing
         self.progressbar.setValue(0)
         self.data = []
         for row in range(0, self.tw_monitor.rowCount()):
