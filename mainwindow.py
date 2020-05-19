@@ -14,6 +14,7 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
         self.initUi()
 
     def initUi(self):
+        self.setWindowTitle("Downloader")
         self.btn_event()
         self.progressbar.setValue(0)
 
@@ -93,7 +94,7 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
 
         print(self.data)
 
-        if self.data == []:
+        if not self.data:
             pass
         else:
             self.progress = 0
@@ -106,6 +107,7 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
                     dl.format = "bestaudio/best"
                 elif row[2] == "mp4":
                     dl.format = "best/best"
+
                 dl.output_path = row[3]
                 if row[4] == "":
                     dl.is_custom_name = False
@@ -122,10 +124,13 @@ class MainWindow(QMainWindow, ui_mainwindow.Ui_MainWindow):
                 else:
                     dl.subtitle = False
 
-                dl.download()
-
-                self.tw_monitor.takeItem(row[0], 6)
-                self.tw_monitor.setItem(row[0], 6, QTableWidgetItem("True"))
+                try:
+                    dl.download()
+                    self.tw_monitor.takeItem(row[0], 6)
+                except:
+                    self.tw_monitor.setItem(row[0], 6, QTableWidgetItem("Error"))
+                else:
+                    self.tw_monitor.setItem(row[0], 6, QTableWidgetItem("True"))
 
                 print(int(100 * (self.progress / len(self.data))))
                 self.progressbar.setValue(int(100 * (self.progress / len(self.data))))

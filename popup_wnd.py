@@ -38,6 +38,7 @@ class AddEditWnd(QDialog, ui_addwindow.Ui_Form):
                 self.cb_subtitle.setChecked(True)
 
     def initUi(self):
+        self.setWindowTitle("Editor")
         self.btn_event()
 
         self.cb_custom_file_name.stateChanged.connect(self.cb_custom_file_name_changed)
