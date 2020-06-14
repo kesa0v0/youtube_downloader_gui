@@ -29,6 +29,11 @@ class Download:
         # TODO: check if args is right
         # TODO: make new class Exception
 
+        if self.link.startswith("you"):
+            self.link = "https://www." + self.link
+        elif self.link.startswith("www."):
+            self.link = "https://" + self.link
+
         if self.is_custom_name:
             if self.custom_name == "":
                 raise Exception("Invalid file name")
